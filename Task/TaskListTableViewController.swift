@@ -66,7 +66,7 @@ class TaskListTableViewController: UITableViewController, ButtonTableViewCellDel
 			let task = TaskController.shared.tasks[indexPath.row]
             let detailVC = segue.destination as? TaskDetailTableViewController
             detailVC?.task = task
-            detailVC?.dueDateValue = task.due as? Date
+            detailVC?.dueDateValue = task.due as Date?
         }
     }
 }
