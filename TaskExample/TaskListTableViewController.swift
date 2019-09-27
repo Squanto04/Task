@@ -43,7 +43,7 @@ class TaskListTableViewController: UITableViewController, ButtonTableViewCellDel
         if editingStyle == .delete {
             let task = TaskController.shared.tasks[indexPath.row]
 			TaskController.shared.remove(task: task)
-            
+
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -62,7 +62,6 @@ class TaskListTableViewController: UITableViewController, ButtonTableViewCellDel
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toViewTask" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
-			
 			let task = TaskController.shared.tasks[indexPath.row]
             let detailVC = segue.destination as? TaskDetailTableViewController
             detailVC?.task = task

@@ -12,7 +12,7 @@ extension Date {
 
 func stringValue() -> String {
     let formatter = DateFormatter()
-    formatter.dateStyle = .medium
+    formatter.dateStyle = .long
     
     return formatter.string(from: self)
     }

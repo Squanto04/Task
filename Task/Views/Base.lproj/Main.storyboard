@@ -18,14 +18,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskListCell" id="N4f-Ui-raX">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskListCell" rowHeight="60" id="N4f-Ui-raX" customClass="ButtonTableViewCell" customModule="Task" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="N4f-Ui-raX" id="MCU-h0-CH3">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Tdu-h1-aPz">
+                                            <rect key="frame" x="20" y="11" width="374" height="38"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPI-6q-lsb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="332" height="38"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3cu-Mp-f8c">
+                                                    <rect key="frame" x="336" y="0.0" width="38" height="38"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="3cu-Mp-f8c" secondAttribute="height" multiplier="1:1" id="NuD-Q2-E1b"/>
+                                                        <constraint firstAttribute="height" constant="38" id="RB8-Ge-q38"/>
+                                                    </constraints>
+                                                    <state key="normal" image="incomplete"/>
+                                                    <connections>
+                                                        <action selector="buttonTapped:" destination="N4f-Ui-raX" eventType="touchUpInside" id="4S0-TR-2mI"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Tdu-h1-aPz" secondAttribute="trailing" id="SWs-x6-VdS"/>
+                                        <constraint firstItem="Tdu-h1-aPz" firstAttribute="bottom" secondItem="MCU-h0-CH3" secondAttribute="bottomMargin" id="biK-cN-yDE"/>
+                                        <constraint firstItem="Tdu-h1-aPz" firstAttribute="leading" secondItem="MCU-h0-CH3" secondAttribute="leadingMargin" id="nzA-Ac-nDs"/>
+                                        <constraint firstItem="Tdu-h1-aPz" firstAttribute="top" secondItem="MCU-h0-CH3" secondAttribute="topMargin" id="tc1-pq-qmH"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="completeButton" destination="3cu-Mp-f8c" id="PjX-Kn-K6a"/>
+                                    <outlet property="primaryLabel" destination="dPI-6q-lsb" id="x9o-dK-738"/>
                                     <segue destination="K34-Wu-kxf" kind="show" identifier="toTaskDetailVC" id="ch0-Xl-USf"/>
                                 </connections>
                             </tableViewCell>
@@ -45,9 +77,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l3c-Jm-mem" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1001" y="-22"/>
+            <point key="canvasLocation" x="1000.0000000000001" y="-22.098214285714285"/>
         </scene>
-        <!--Title-->
+        <!--Task Detail-->
         <scene sceneID="wzU-YV-0Lz">
             <objects>
                 <tableViewController id="K34-Wu-kxf" customClass="TaskDetailTableViewController" customModule="Task" customModuleProvider="target" sceneMemberID="viewController">
@@ -151,7 +183,7 @@
                             <outletCollection property="gestureRecognizers" destination="LAc-zU-7R6" appends="YES" id="L7g-6m-fXO"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="eAm-OW-M4d">
+                    <navigationItem key="navigationItem" title="Task Detail" id="eAm-OW-M4d">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="RQM-js-u7K">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="K34-Wu-kxf" id="u4U-tt-eQ9"/>
@@ -203,6 +235,9 @@
             <point key="canvasLocation" x="217.39130434782609" y="-22.098214285714285"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="incomplete" width="512" height="512"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ch0-Xl-USf"/>
     </inferredMetricsTieBreakers>
